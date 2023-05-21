@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de media</title>
+</head>
+
+<body>
+    <header>
+        <h1>Calculadora de media</h1>
+    </header>
+    <main>
+        <form>
+            <label for="campo">Digite notas entre 0 e 10 separadas por ponto e virgula:</label>
+            <input type="text" id="campo" placeholder="Digite uma nota">
+            <button onclick="clickHtml()">Media Final</button>
+            <div class="resultado" id="resultado"></div>
+        </form>
+    </main>
+    <style>
+        /* Define estilos padrão */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Define o estilo para o body */
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Define o estilo para o header */
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Define o estilo para o conteúdo principal */
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Define o estilo para o título */
+        h1 {
+            margin: 0;
+        }
+
+        /* Define o estilo para o formulário */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Define o estilo para a label */
+        label {
+            margin-bottom: 10px;
+        }
+
+        /* Define o estilo para o input */
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        /* Define o estilo para o botão */
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Define o estilo para o resultado */
+        .resultado {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function clickHtml() {
+            // Obter o valor do input
+            const campo = document.getElementById("campo");
+            const notasString = campo.value;
+
+            // Verificar se o separador ";" está presente
+            if (!notasString.includes(";")) {
+                alert("Notas digitas incorretamente!");
+                return;
+            }
+
+            const notas = notasString.split(";");
+
+            // Calcular a média das notas
+            let total = 0;
+            for (let i = 0; i < notas.length; i++) {
+                const nota = parseFloat(notas[i].replace(",", "."));
+                if (!isNaN(nota)) {
+                    total += nota;
+                } else {
+                    alert("Notas digitadas incorretamente");
+                    return;
+                }
+            }
+            const media = total / notas.length;
+
+            // Exibir o resultado em um alert
+            const resultado = document.getElementById("resultado");
+            resultado.innerHTML = "";
+            alert(`A média das notas é: ${media.toFixed(2)}`);
+        }
+    </script>
+</body>
+
+</html>
